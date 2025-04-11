@@ -12,7 +12,9 @@ A [Home Assistant Dashboard Card](https://www.home-assistant.io/dashboards/) ava
 * "Inner Container" mode that disables all visual styling and simply acts as a stack.
 
 ## The Bolder Collection
+
 Check out the other "Bolder" cards:
+
 * [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/releases/latest/download/bolder-weather-card.js)
 
 ## Installation
