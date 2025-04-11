@@ -22,7 +22,7 @@ ${myVar ? ':host{}' : ':host{}'}
       --bolder-container-card-title-padding_internal: var(--bolder-container-card-title-padding, 12px 16px 16px);
       --bolder-container-card-title-gap_internal: var(--bolder-container-card-title-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
 
-      /*** LLayout */
+      /*** Layout */
       --bolder-container-card-gap_internal: var(--bolder-container-card-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
     }
 

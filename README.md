@@ -103,6 +103,36 @@ cards:
 | card_background_override | string (color)        | **Optional** | When set, overrides the background color of the inner cards. Note that `keep_background` must not be `true`, or it overrides this option.                                                                                  | `undefined` |
 | is_inner_container       | boolean               | **Optional** | When `true`, visual aspects of the container card are removed, including: Shadow, Rounded Corners, Background, Border, Padding, and Blur/Filter. This is useful for wuing within other cards or collapsible card trays.    | `false`     |
 
+### Theme Variables
+| Variable Name | Description | Fallback 1  | Fallback 2 | Default |
+| ------------- | ----------- | ----------- | -----------| ------- |
+||||||
+| **Card Variables** | Variables that affect the container card. ||||
+||||||
+| bolder-container-card-background | The background of the container. ||| transparent |
+| bolder-container-card-border-color | The border color of the container. | --ha-card-border-color | --divider-color | #e0e0e0 |
+| bolder-container-card-border-style | The border style of the container. | --ha-card-border-style || solid |
+| bolder-container-card-border-width | The border width of the container. | --ha-card-border-width || 0px |
+| bolder-container-card-border-radius | The rounded corner radius of the container. | --ha-card-border-radius || 0px |
+| bolder-container-card-box-shadow | The drop-shadow of the container. ||| --ha-card-box-shadow |
+| bolder-container-card-padding | The padding between the container's edges and the inner cards ||| 0px |
+| bolder-container-card-backdrop-filter | The filter/blue setting for the container. | --ha-card-backdrop-filter || none |
+||||||
+| **Title Text** | Variables that affect the container's header. ||||
+||||||
+| bolder-container-card-title-color | The color of the heading text. | --bolder-container-card-text-color | --ha-heading-card-title-color | --primary-text-color |
+| bolder-container-card-title-outline-color | The outline color of the heading text. | --bolder-container-card-text-outline-color || transparent |
+| bolder-container-card-title-size | The size of the heading text. | --ha-heading-card-title-font-size | --headline-font-size | 16px |
+| bolder-container-card-title-weight | The weight of the heading text. | --ha-heading-card-title-font-weight || 400 |
+| bolder-container-card-title-line-height | The line-height of the heading text. ||| 48px |
+| bolder-container-card-title-padding | The padding around the heading text. ||| 12px 16px 16px |
+| bolder-container-card-title-background | The background color of the heading area. ||| --ha-card-background |
+| bolder-container-card-title-gap | The gap between the heading area and the first inner card. | --vertical-stack-card-gap | --stack-card-gap | 8px |
+||||||
+| **Layout** | Variables that affect the card layout. ||||
+||||||
+| bolder-container-card-gap | The gap between inner cards. | --vertical-stack-card-gap | --stack-card-gap | 8px |
+
 ## Footnotes
 
 Note that though the languages are specified, currently they are unused and all English.
