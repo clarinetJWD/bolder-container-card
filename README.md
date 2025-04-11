@@ -2,7 +2,7 @@
 
 A [Home Assistant Dashboard Card](https://www.home-assistant.io/dashboards/) available through the [Home Assistant Community Store](https://hacs.xyz). This is a replacement for the various "Stack-In-Card" cards that allows the inner cards and this container card to be styled differently.
 
-![Bolder Container Card](TODO)
+![Bolder Container Card](./doc/bolder_container_overview.png)
 
 ## Features
 
