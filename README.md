@@ -60,6 +60,8 @@ Check out the other "Bolder" cards:
 
 ## Configuration
 
+_Note that while I would like to get full UI configuration done for this card, I currently am just using the stack card editor, which doesn't have any of the options specific to this card in the UI. Please use YAML configuration for these elements._
+
 ### Minimal configuration
 
 ```yaml
