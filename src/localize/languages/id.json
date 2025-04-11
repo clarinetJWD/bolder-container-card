@@ -1,0 +1,16 @@
+{
+  "editor": {
+    "title": "Title",
+    "mode": "Mode",
+    "cards": "Cards",
+    "horizontal": "Horizontal",
+    "vertical": "Vertical",
+    "keep_margin": "Keep Margin",
+    "keep_background": "Keep Background",
+    "keep_box_shadow": "Keep Box Shadow",
+    "keep_outer_padding": "Keep Outer Padding",
+    "keep_border_radius": "Keep Border Radius",
+    "card_background_override": "Card Background Color Override",
+    "is_inner_container": "Is Inner Container?"
+  }
+}
