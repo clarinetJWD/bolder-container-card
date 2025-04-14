@@ -1,6 +1,6 @@
 import { type LovelaceCard, type LovelaceCardConfig/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
 import type { TemplateResult, nothing } from 'lit'
-import type { BolderContainerCardEditor } from './editor-2'
+import type { BolderContainerCardEditor } from './editor'
 
 export type TemplateNothing = typeof nothing
 export type Template = TemplateResult | TemplateNothing
@@ -14,7 +14,7 @@ declare global {
 
 export interface BolderContainerCardConfig extends LovelaceCardConfig {
   mode?: 'horizontal' | 'vertical'
-  cards: LovelaceCardConfig[]
+  cards?: LovelaceCardConfig[]
   title?: string
   keep_margin?: boolean
   keep_background?: boolean

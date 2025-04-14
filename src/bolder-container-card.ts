@@ -1,7 +1,7 @@
 import { LitElement, type TemplateResult, html, type PropertyValues, css, type CSSResultGroup, unsafeCSS, type CSSResult } from 'lit'
 import { customElement, property } from 'lit-element'
 /* import { ifDefined } from 'lit-html/directives/if-defined' */
-import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
+import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard, type LovelaceCardEditor } from 'custom-card-helpers'
 import type { BolderContainerCardConfig, MergedBolderContainerCardConfig, StyleItem } from './types'
 import { GetCss } from './styles'
 import localize from './localize/localize'
@@ -43,50 +43,6 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  static async getConfigElement () {
-    // Ensure the hui-stack-card-editor is loaded.
-    let cls = customElements.get('hui-vertical-stack-card')
-    if (!cls) {
-      const helpers = await (window as any).loadCardHelpers()
-      helpers.createCardElement({ type: 'vertical-stack', cards: [] })
-      await customElements.whenDefined('hui-vertical-stack-card')
-      cls = customElements.get('hui-vertical-stack-card')
-    }
-    const configElement = await (cls as any).getConfigElement()
-
-    // Patch setConfig to remove non-VSIC config options.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const schema = configElement._schema
-    configElement._schema = [
-      { name: 'title', locale: this.getLocale(), selector: { text: {} } }/*,
-      { name: 'keep_border_radius', locale: this.getLocale(), selector: { boolean: {} } },
-      {
-        name: 'mode',
-        locale: this.getLocale(),
-        selector: {
-          select: {
-            multiple: false,
-            options: [
-              { label: 'horizontal', value: 'horizontal' },
-              { label: 'vertical', value: 'vertical' }
-            ]
-          }
-        }
-      } */
-    ]
-    configElement._computeLabelCallback = (schema) => this.computeLabel(schema)
-    const originalSetConfig = configElement.setConfig
-    configElement.setConfig = (config) =>
-      originalSetConfig.call(configElement, {
-        type: config.type,
-        title: config.title,
-        cards: config.cards || []
-      })
-
-    return configElement
-  }
-
   protected static getLocale (): string {
     return BolderContainerCard._hass?.locale.language ?? 'en-US'
   }
@@ -96,12 +52,10 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     return localize('editor.' + schema.name, schema.locale)
   }
 
-  /*
   public static async getConfigElement (): Promise<LovelaceCardEditor> {
-    await import('./editor-2')
+    await import('./editor')
     return document.createElement('bolder-container-card-editor')
   }
-  */
 
   // https://lit.dev/docs/components/styles/
   static get styles (): CSSResultGroup {

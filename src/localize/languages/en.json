@@ -11,6 +11,9 @@
     "keep_outer_padding": "Keep Outer Padding",
     "keep_border_radius": "Keep Border Radius",
     "card_background_override": "Card Background Color Override",
-    "is_inner_container": "Is Inner Container?"
+    "is_inner_container": "Is Inner Container?",
+    "keep_settings": "Keep Inner Card Settings",
+    "container_card_settings": "Container Card Settings",
+    "inner_cards": "Container Card Inner Cards:"
   }
 }
