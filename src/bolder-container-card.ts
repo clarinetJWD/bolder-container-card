@@ -8,7 +8,7 @@ import localize from './localize/localize'
 import * as pjson from '../package.json'
 
 console.info(
-  `%c STACK-IN-CARD \n%c   Version ${pjson.version}   `,
+  `%c BOLDER-CONTAINER-CARD \n%c   Version ${pjson.version}   `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray'
 );
@@ -89,17 +89,16 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     super.updated(changedProperties)
     if (!this._card) return
     this._waitForChildren(this._card, false)
-    window.setTimeout(() => {
-      if (!this._config?.keep_background) this._waitForChildren(this._card, true)
-      if (this._config?.keep_outer_padding && this._card?.shadowRoot) {
-        const stackRoot = this._card.shadowRoot.getElementById('root')
-        if (stackRoot) stackRoot.style.padding = '8px'
-      }
-      if (this._card?.shadowRoot) {
-        const stackRoot = this._card.shadowRoot.getElementById('root')
-        if (stackRoot) stackRoot.style.gap = 'var(--bolder-container-card-gap_internal)'
-      }
-    }, 1)
+    window.setTimeout(() => { this.updateStyleOnTimeout() }, 1)
+    window.setTimeout(() => { this.updateStyleOnTimeout() }, 500)
+  }
+
+  protected updateStyleOnTimeout (): void {
+    if (!this._config?.keep_background) this._waitForChildren(this._card, true)
+    if (this._card?.shadowRoot) {
+      const stackRoot = this._card.shadowRoot.getElementById('root')
+      if (stackRoot) stackRoot.style.gap = 'var(--bolder-container-card-gap_internal)'
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -120,7 +119,10 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     }
 
     return html`
-      <ha-card class="${this._config.is_inner_container ? 'inner-container' : ''}">
+      <ha-card class="
+      ${this._config.is_inner_container ? 'inner-container ' : ''}
+      ${this._config.keep_outer_padding ? 'outer-padding ' : ''}
+      ">
       ${this._config.title ? html`<h1 class="card-header">${this._config.title}</h1>` : html``}
         <div>${this._card}</div>
         <style>${this._config.styles ? css`${this.getStyleOverrideFromConfig(this._config.styles)}` : css``}</style>
@@ -161,7 +163,6 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
       const card = element.shadowRoot.querySelector('ha-card') as LovelaceCard
       if (!card) {
-        // if (element.shadowRoot.querySelector('stack-in-card')) return;
         // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
         const searchEles = element.shadowRoot.getElementById('root') || element.shadowRoot.getElementById('card')
         if (!searchEles) return
@@ -230,20 +231,9 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     const newCard = await this._createCard(config)
     element.replaceWith(newCard)
     this._card = newCard
-    window.setTimeout(() => {
-      this._waitForChildren(this._card, true)
-      /* if (!this._config?.keep_background || true) this._waitForChildren(this._card, true) */
-      if (this._config?.keep_outer_padding && this._card?.shadowRoot) {
-        const stackRoot = this._card.shadowRoot.getElementById('root')
-        if (stackRoot) {
-          stackRoot.style.padding = '8px'
-        }
-      }
-      if (this._card?.shadowRoot) {
-        const stackRoot = this._card.shadowRoot.getElementById('root')
-        if (stackRoot) stackRoot.style.gap = 'var(--bolder-container-card-gap_internal)'
-      }
-    }, 1)
+    // Update the style immediately, and then again after a delay just in case the DOM wasn't totally finished.
+    window.setTimeout(() => { this.updateStyleOnTimeout() }, 1)
+    window.setTimeout(() => { this.updateStyleOnTimeout() }, 500)
     return newCard
   }
 

@@ -9,7 +9,7 @@ ${myVar ? ':host{}' : ':host{}'}
       --bolder-container-card-border-width_internal: var(--bolder-container-card-border-width, var(--ha-card-border-width, 0px));
       --bolder-container-card-border-radius_internal: var(--bolder-container-card-border-radius, var(--ha-card-border-radius, 0px));
       --bolder-container-card-box-shadow_internal: var(--bolder-container-card-box-shadow, var(--ha-card-box-shadow));
-      --bolder-container-card-padding_internal: var(--bolder-container-card-padding, 0px);
+      --bolder-container-card-padding_internal: var(--bolder-container-card-padding, var(--ha-card-padding, 10px));
       --bolder-container-card-backdrop-filter_internal: var(--bolder-container-card-backdrop-filter, var(--ha-card-backdrop-filter, none));
 
       /*** Title Text */
@@ -35,8 +35,12 @@ ${myVar ? ':host{}' : ':host{}'}
       border-color: var(--bolder-container-card-border-color_internal);
       border-style: var(--bolder-container-card-border-style_internal);
       border-width: var(--bolder-container-card-border-width_internal);
-      padding: var(--bolder-container-card-padding_internal);
+      padding: 0 0 0 0;
       backdrop-filter: var(--bolder-container-card-backdrop-filter_internal);
+    }
+  
+    ha-card.outer-padding {
+      padding: var(--bolder-container-card-padding_internal);
     }
 
     ha-card.inner-container {
