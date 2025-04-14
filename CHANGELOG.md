@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.0...v1.1.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* --bolder-container-card-padding is now only applied when keep_outer_padding is active, and uses fallback variables. ([6052a39](https://github.com/clarinetJWD/bolder-container-card/commit/6052a39a467fad55594c3582f0b828ca04355c17))
+* Added assurance that gap style will be applied when the DOM loads too slowly. ([6052a39](https://github.com/clarinetJWD/bolder-container-card/commit/6052a39a467fad55594c3582f0b828ca04355c17))
+* Better behavior for keep_outer_padding. ([6052a39](https://github.com/clarinetJWD/bolder-container-card/commit/6052a39a467fad55594c3582f0b828ca04355c17))
+
 ## [1.1.0](https://github.com/clarinetJWD/bolder-container-card/compare/v1.0.0...v1.1.0) (2025-04-14)
 
 
