@@ -1,4 +1,5 @@
-import { LitElement, customElement, property, type TemplateResult, html, type PropertyValues, css, unsafeCSS, type CSSResultGroup, type CSSResult } from 'lit-element'
+import { LitElement, type TemplateResult, html, type PropertyValues, css, type CSSResultGroup, unsafeCSS, type CSSResult } from 'lit'
+import { customElement, property } from 'lit-element'
 /* import { ifDefined } from 'lit-html/directives/if-defined' */
 import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
 import type { BolderContainerCardConfig, MergedBolderContainerCardConfig, StyleItem } from './types'
@@ -168,7 +169,7 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       <ha-card class="${this._config.is_inner_container ? 'inner-container' : ''}">
       ${this._config.title ? html`<h1 class="card-header">${this._config.title}</h1>` : html``}
         <div>${this._card}</div>
-        <style>${this._config.styles ? this.getStyleOverrideFromConfig(this._config.styles) : css``}</style>
+        <style>${this._config.styles ? css`${this.getStyleOverrideFromConfig(this._config.styles)}` : css``}</style>
       </ha-card>
     `
   }
