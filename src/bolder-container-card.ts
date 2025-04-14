@@ -1,7 +1,7 @@
-import { LitElement, customElement, property, type TemplateResult, html, type PropertyValues, css, unsafeCSS, type CSSResultGroup } from 'lit-element'
+import { LitElement, customElement, property, type TemplateResult, html, type PropertyValues, css, unsafeCSS, type CSSResultGroup, type CSSResult } from 'lit-element'
 /* import { ifDefined } from 'lit-html/directives/if-defined' */
 import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
-import type { BolderContainerCardConfig, MergedBolderContainerCardConfig } from './types'
+import type { BolderContainerCardConfig, MergedBolderContainerCardConfig, StyleItem } from './types'
 import { GetCss } from './styles'
 import localize from './localize/localize'
 import * as pjson from '../package.json'
@@ -122,7 +122,8 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       keep_outer_padding: config.keep_outer_padding ?? false,
       card_background_override: config.card_background_override ?? undefined,
       is_inner_container: config.is_inner_container ?? false,
-      cards: config.cards ?? []
+      cards: config.cards ?? [],
+      styles: config.styles ?? []
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -167,6 +168,7 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       <ha-card class="${this._config.is_inner_container ? 'inner-container' : ''}">
       ${this._config.title ? html`<h1 class="card-header">${this._config.title}</h1>` : html``}
         <div>${this._card}</div>
+        <style>${this._config.styles ? this.getStyleOverrideFromConfig(this._config.styles) : css``}</style>
       </ha-card>
     `
   }
@@ -307,5 +309,13 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     }
     // eslint-disable-next-line @typescript-eslint/promise-function-async
     return customElements.whenDefined(card.localName).then(() => this._computeCardSize(card))
+  }
+
+  private getStyleOverrideFromConfig (styles: StyleItem[]): CSSResult {
+    const styleLines: string[] = styles.map((s) => s.variable.startsWith('bolder-container-card-') ? `--${s.variable}_internal: ${s.value} !important;` : `--bolder-container-card-${s.variable}_internal: ${s.value} !important;`)
+    return css`
+:host { 
+  ${unsafeCSS(styleLines.join('/n'))} 
+}`
   }
 }

@@ -75,6 +75,7 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
     _config.card_background_override = event.detail.value.card_background_override
     _config.is_inner_container = event.detail.value.is_inner_container
     _config.cards = event.detail.value.cards
+    _config.styles = event.detail.value.styles
 
     this.config = _config
 

@@ -23,6 +23,7 @@ export interface BolderContainerCardConfig extends LovelaceCardConfig {
   keep_outer_padding?: boolean
   card_background_override?: string
   is_inner_container?: boolean
+  styles?: StyleItem[]
 }
 
 export interface MergedBolderContainerCardConfig extends LovelaceCardConfig {
@@ -36,6 +37,12 @@ export interface MergedBolderContainerCardConfig extends LovelaceCardConfig {
   keep_outer_padding: boolean
   card_background_override?: string
   is_inner_container: boolean
+  styles?: StyleItem[]
+}
+
+export interface StyleItem {
+  variable: string
+  value: string
 }
 
 export interface ConfigChangedEvent<T extends object = object> {

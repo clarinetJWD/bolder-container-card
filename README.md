@@ -55,6 +55,7 @@ Check out the other "Bolder" cards:
       URL: /hacsfiles/bolder-container-card/bolder-container-card.js
       Type: JavaScript Module
       ```
+
 6. Restart Home Assistant.
 7. Add [configuration](#configuration) for the card in your `ui-lovelace.yaml` or via the UI.
 
@@ -82,6 +83,13 @@ keep_border_radius: false
 keep_outer_padding: false
 card_background_override: red
 is_inner_container: false
+styles:
+  - variable: title-color
+    value: red
+  - variable: title-size
+    value: 32pt
+  - variable: card-color
+    value: '#0000ff'
 cards:
   - type: your-first-inner-card-type
     ...
@@ -101,9 +109,42 @@ cards:
 | keep_border_radius       | boolean               | **Optional** | When `true`, the inner cards keep their normal rounded corners. When `false`, inner cards have their rounded corner radius set to `0`.                                                                                     | `false`     |
 | keep_outer_padding       | boolean               | **Optional** | When `true`, the container card keeps padding between its edge and the inner cards. When `false`, there is no padding around the inner cards.                                                                              | `false`     |
 | card_background_override | string (color)        | **Optional** | When set, overrides the background color of the inner cards. Note that `keep_background` must not be `true`, or it overrides this option.                                                                                  | `undefined` |
-| is_inner_container       | boolean               | **Optional** | When `true`, visual aspects of the container card are removed, including: Shadow, Rounded Corners, Background, Border, Padding, and Blur/Filter. This is useful for wuing within other cards or collapsible card trays.    | `false`     |
+| is_inner_container       | boolean               | **Optional** | When `true`, visual aspects of the container card are removed, including: Shadow, Rounded Corners, Background, Border, Padding, and Blur/Filter. This is useful for using within other cards or collapsible card trays.    | `false`     |
+| styles                   | StyleItem[]           | **Optional** | Allows setting theme style variables on a per-card basis without editing the theme.                                                                                                                                        | `[]`        |
 
 ### Theme Variables
+
+Almost every aspect of this card can be modified using theme variables (and without card-mod). These can be applied in two ways, see below.
+
+#### Modifying your theme's YAML file
+
+Just add a line to your theme's yaml file with the variable name and value to override the default:
+
+```yaml
+bolder-weather-card-background: red # makes the card red when use_day_night_colors is off.
+```
+
+#### Using card configuration
+
+You can add styles to an individual card using it's `styles:` option. All theme variables are supported this way, and the configuration format should be:
+
+```yaml
+styles:
+  - variable: title-color
+    value: red
+  - variable: title-size
+    value: 32pt
+  - variable: background
+    value: '#0000ff'
+```
+
+Note that you do not need the `bolder-container-card` prefix when specifying variables this way (though it will work if you add it). If the prefix isn't found, it will add it automatically.
+
+For example, if you enter `variable: background`, the CSS variable created will be `--bolder-container-card-background_internal`.
+The `_internal` flag is used internally only, and should never be specified.
+
+#### All Available Variables
+
 | Variable Name | Description | Fallback 1  | Fallback 2 | Default |
 | ------------- | ----------- | ----------- | -----------| ------- |
 ||||||
@@ -138,4 +179,5 @@ cards:
 Note that though the languages are specified, currently they are unused and all English.
 I hope to be able to get full UI configuration support, where they will be used, but that is a future job.
 If you'd like to contribute translations to your language, create a new branch, modify the file, and make a pull request.
-[^2]: Supported languages: `ar`, `bg`, `ca`, `cs`, `cy`, `da`, `de`, `el`,`en`, `es`, `et`, `fi`, `fr`, `he`, `hu`, `hr`, `id`, `is`, `it`, `ko`, `lb`, `lt`, `nb`, `nl`, `pl`, `pt`, `pt-BR`, `ro`, `ru`, `sk`, `sl`, `sr`, `sr-Latn`, `sv`, `th`, `tr`, `uk`, `ur`, `vi`, `zh-CN`, `zh-TW`
+
+Supported languages: `ar`, `bg`, `ca`, `cs`, `cy`, `da`, `de`, `el`,`en`, `es`, `et`, `fi`, `fr`, `he`, `hu`, `hr`, `id`, `is`, `it`, `ko`, `lb`, `lt`, `nb`, `nl`, `pl`, `pt`, `pt-BR`, `ro`, `ru`, `sk`, `sl`, `sr`, `sr-Latn`, `sv`, `th`, `tr`, `uk`, `ur`, `vi`, `zh-CN`, `zh-TW`
