@@ -6,6 +6,7 @@ import { css } from 'lit'
 import { customElement, query } from 'lit/decorators.js'
 
 @customElement('sl-tab-group')
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
 // @ts-ignore
 export class HaSlTabGroup extends TabGroup {
   private _mouseIsDown = false
@@ -18,7 +19,7 @@ export class HaSlTabGroup extends TabGroup {
 
   private _scrollLeft = 0
 
-  // eslint-disable-next-line @typescript-eslint/prefer-readonly
+  // eslint-disable-next-line @typescript-eslint/prefer-readonly, @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
   // @ts-ignore
   @query('.tab-group__nav', true)
   private readonly _scrollContainer?: HTMLElement
@@ -51,6 +52,7 @@ export class HaSlTabGroup extends TabGroup {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
   // @ts-ignore
   protected override handleClick (event: MouseEvent): void {
     if (
@@ -59,6 +61,7 @@ export class HaSlTabGroup extends TabGroup {
     ) {
       return
     }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
     // @ts-ignore
     super.handleClick(event)
   }
@@ -160,6 +163,7 @@ export class HaSlTabGroup extends TabGroup {
 
 declare global {
   interface HTMLElementTagNameMap {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
     // @ts-ignore
     'sl-tab-group': HaSlTabGroup
   }
