@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.1...v1.1.2) (2025-04-15)
+
+
+### Bug Fixes
+
+* Fixed the gap between cards needing to be set on timeout. The gap is now applied immediately with no delayed layout change. ([acd6a19](https://github.com/clarinetJWD/bolder-container-card/commit/acd6a19a1243ab5a5403ab71c63da3aa5994cd84))
+
 ## [1.1.1](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.0...v1.1.1) (2025-04-14)
 
 
