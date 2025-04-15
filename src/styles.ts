@@ -1,6 +1,5 @@
 export function GetCss (myVar: boolean): string {
   return `
-${myVar ? ':host{}' : ':host{}'}
     :host {
       /*** Card Variables */
       --bolder-container-card-background_internal: var(--bolder-container-card-background, transparent);
@@ -23,7 +22,7 @@ ${myVar ? ':host{}' : ':host{}'}
       --bolder-container-card-title-gap_internal: var(--bolder-container-card-title-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
 
       /*** Layout */
-      --bolder-container-card-gap_internal: var(--bolder-container-card-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
+      ${myVar ? '--vertical-stack-card-gap: var(--bolder-container-card-gap);' : ''}
     }
 
     ha-card {

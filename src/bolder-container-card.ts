@@ -59,7 +59,9 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
 
   // https://lit.dev/docs/components/styles/
   static get styles (): CSSResultGroup {
-    return [css`${unsafeCSS(GetCss(false))}`]
+    const root = document.documentElement
+    const value = getComputedStyle(root).getPropertyValue('--bolder-container-card-gap').trim()
+    return [css`${unsafeCSS(GetCss(!!value))}`]
   }
 
   public setConfig (config: BolderContainerCardConfig): void {
@@ -95,10 +97,6 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
 
   protected updateStyleOnTimeout (): void {
     if (!this._config?.keep_background) this._waitForChildren(this._card, true)
-    if (this._card?.shadowRoot) {
-      const stackRoot = this._card.shadowRoot.getElementById('root')
-      if (stackRoot) stackRoot.style.gap = 'var(--bolder-container-card-gap_internal)'
-    }
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
