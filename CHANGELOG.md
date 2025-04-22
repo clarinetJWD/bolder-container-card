@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.3](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.2...v1.1.3) (2025-04-22)
+
+
+### Bug Fixes
+
+* Fixed an issue where conatiner card gap wouldn't be applied when specified in the yaml configuration instead of themes. ([dadf423](https://github.com/clarinetJWD/bolder-container-card/commit/dadf423bc2bd3993238748bc91129ec2fb618561))
+* Fixed the gap between cards needing to be set on timeout. ([71594bf](https://github.com/clarinetJWD/bolder-container-card/commit/71594bfd0c19abb6481e38a83ae6d05cd7eb2df1))
+* The gap is now applied immediately with no delayed layout change. ([71594bf](https://github.com/clarinetJWD/bolder-container-card/commit/71594bfd0c19abb6481e38a83ae6d05cd7eb2df1))
+
 ## [1.1.2](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.1...v1.1.2) (2025-04-15)
 
 
