@@ -98,8 +98,10 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
   protected updateStyleOnTimeout (): void {
     if (!this._config?.keep_background) this._waitForChildren(this._card, true)
     if (this._card?.shadowRoot) {
-      const stackRoot = this._card.shadowRoot.getElementById('root')
-      if (stackRoot) stackRoot.style = '--vertical-stack-card-gap: var(--bolder-container-card-gap_internal)'
+      if (this._config?.styles?.find((item) => item.variable === 'bolder-container-card-gap' || item.variable === 'gap')) {
+        const stackRoot = this._card.shadowRoot.getElementById('root')
+        if (stackRoot) stackRoot.style = '--vertical-stack-card-gap: var(--bolder-container-card-gap_internal)'
+      }
     }
   }
 
