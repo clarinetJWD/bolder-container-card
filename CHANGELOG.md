@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.3...v1.1.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* Fixed an issue where when "gap" was NOT specified in the config, it would use the incorrect value. ([e11a61f](https://github.com/clarinetJWD/bolder-container-card/commit/e11a61f1edefc72a2e83a2ab7b6942ad541c21f6))
+
 ## [1.1.3](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.2...v1.1.3) (2025-04-22)
 
 
