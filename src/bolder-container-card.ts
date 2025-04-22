@@ -97,6 +97,10 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
 
   protected updateStyleOnTimeout (): void {
     if (!this._config?.keep_background) this._waitForChildren(this._card, true)
+    if (this._card?.shadowRoot) {
+      const stackRoot = this._card.shadowRoot.getElementById('root')
+      if (stackRoot) stackRoot.style = '--vertical-stack-card-gap: var(--bolder-container-card-gap_internal)'
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
