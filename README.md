@@ -15,7 +15,7 @@ A [Home Assistant Dashboard Card](https://www.home-assistant.io/dashboards/) ava
 
 Check out the other "Bolder" cards:
 
-* [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/releases/latest/download/bolder-weather-card.js)
+* [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/): A beautiful weather card designed for wall-mounted tablets, viewed at a distance.
 
 ## Installation
 
@@ -92,6 +92,8 @@ styles:
     value: 32pt
   - variable: card-color
     value: '#0000ff'
+  - variable: border-width
+    value: var(--ha-card-border-width)
 cards:
   - type: your-first-inner-card-type
     ...
