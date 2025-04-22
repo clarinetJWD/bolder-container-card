@@ -92,6 +92,8 @@ styles:
     value: 32pt
   - variable: card-color
     value: '#0000ff'
+  - variable: border-width
+    value: var(--ha-card-border-width)
 cards:
   - type: your-first-inner-card-type
     ...
