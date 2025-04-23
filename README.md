@@ -9,6 +9,7 @@ A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboar
 > NOTE: This is pre-release, and currently, only Container Card is stable/available.
 
 ## Table of Contents
+
 1. [The Bolder Card Collection](#the-bolder-collection)
 2. [Installation](#installation)
 3. [Bolder Container Card](#bolder-container-card)
@@ -26,8 +27,7 @@ Check out the other "Bolder" cards:
 | --------------------------- | --------------------- | ------------ |
 | <img src="https://github.com/user-attachments/assets/030d0f77-f940-4818-bb01-969a96b34571" height="100"> | [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/) | A beautiful weather card designed for wall-mounted tablets, viewed at a distance. |
 
-<details>
-   <summary><h2>Installation</h2></summary>
+## Installation
 
 ### Manual Installation
 
@@ -41,7 +41,7 @@ Check out the other "Bolder" cards:
        type: module
    ```
 
-4. Add [configuration](#configuration) for the card in your `ui-lovelace.yaml`.
+4. Add [configuration](#configuration-container-card) for the card in your `ui-lovelace.yaml`.
 
 ### Installation and tracking with `hacs`
 
@@ -67,12 +67,9 @@ Check out the other "Bolder" cards:
       ```
 
 6. Restart Home Assistant.
-7. Add [configuration](#configuration) for the card in your `ui-lovelace.yaml` or via the UI.
+7. Add [configuration](#configuration-container-card) for the card in your `ui-lovelace.yaml` or via the UI.
 
-</details>
-
-<details>
-   <summary><h2>Bolder Container Card</h2></summary>
+## Bolder Container Card
 
 ![Bolder Container Card](./doc/bolder_container_overview.png)
 
@@ -202,8 +199,6 @@ The `_internal` flag is used internally only, and should never be specified.
 | **Layout** | Variables that affect the card layout. ||||
 ||||||
 | bolder-container-card-gap | The gap between inner cards. | --vertical-stack-card-gap | --stack-card-gap | 8px |
-
-</details>
 
 ## Footnotes
 
