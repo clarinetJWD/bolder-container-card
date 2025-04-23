@@ -21,13 +21,13 @@ Check out the other "Bolder" cards:
 
 ### Manual Installation
 
-1. Download the [bolder-container-card](https://www.github.com/clarinetJWD/bolder-container-card/releases/latest/download/bolder-container-card.js).
+1. Download the [bolder-utility-cards](https://www.github.com/clarinetJWD/bolder-container-card/releases/latest/download/bolder-utilility-cards.js).
 2. Place the file in your Home Assistant's `config/www` folder.
 3. Add the configuration to your `ui-lovelace.yaml`.
 
    ```yaml
    resources:
-     - url: /local/bolder-container-card.js
+     - url: /local/bolder-utility-cards.js
        type: module
    ```
 
@@ -37,14 +37,14 @@ Check out the other "Bolder" cards:
 
 1. Make sure the [HACS](https://github.com/custom-components/hacs) component is installed and working.
 2. Add this repository as a custom repository `https://www.github.com/clarinetJWD/bolder-container-card/`
-3. Search for `bolder-container-card` in HACS and install it.
+3. Search for `bolder-utility-cards` in HACS and install it.
 4. **You're Probably Done!** - In newer versions of Home Assistant, you should simply be able to refresh the dashboard to see the new card now. If not, continue:
 5. Depening on whether you manage your Lovelace resources via YAML (3i) or UI (3ii), you have to add the corresponding resources.
    1. **YAML:** Add the configuration to your `ui-lovelace.yaml`.
 
       ```yaml
       resources:
-        - url: /hacsfiles/bolder-container-card/bolder-container-card.js
+        - url: /hacsfiles/bolder-utility-cards/bolder-utility-cards.js
           type: module
       ```
 
@@ -52,7 +52,7 @@ Check out the other "Bolder" cards:
       _(Alternatively go to Settings -> Dashboards -> Resources -> Add Resource)_
 
       ```yaml
-      URL: /hacsfiles/bolder-container-card/bolder-container-card.js
+      URL: /hacsfiles/bolder-utility-cards/bolder-utility-cards.js
       Type: JavaScript Module
       ```
 

@@ -1,7 +1,7 @@
 {
-  "name": "bolder-container-card",
+  "name": "bolder-utility-cards",
   "version": "1.1.4",
-  "description": "Lovelace bolder-container-card",
+  "description": "Lovelace bolder-utility-cards",
   "keywords": [
     "home-assistant",
     "homeassistant",
@@ -10,7 +10,7 @@
     "lovelace",
     "custom-cards"
   ],
-  "module": "bolder-container-card.js",
+  "module": "bolder-utility-cards.js",
   "repository": "git@github.com:clarinetJWD/bolder-container-card.git",
   "author": "Joe Dombrowski",
   "license": "MIT",

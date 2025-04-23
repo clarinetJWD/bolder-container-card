@@ -8,11 +8,12 @@ import gzipPlugin from 'rollup-plugin-gzip'
 
 export default [
   {
-    input: 'src/bolder-container-card.ts',
+    input: 'src/container-card/bolder-container-card.ts',
     output: {
       dir: 'dist',
       format: 'es',
-      inlineDynamicImports: true
+      inlineDynamicImports: true,
+      file: 'bolder-utility-cards.js'
     },
     plugins: [
       nodeResolve(),

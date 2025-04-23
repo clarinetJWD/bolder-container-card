@@ -6,16 +6,16 @@ import terser from '@rollup/plugin-terser'
 import json from '@rollup/plugin-json'
 
 export default {
-  input: ['src/bolder-container-card.ts'],
+  input: ['src/container-card/bolder-container-card.ts'],
   output: [{
-    dir: '\\\\10.10.82.78\\config\\www\\community\\bolder-container-card-dev',
     format: 'es',
-    inlineDynamicImports: true
+    inlineDynamicImports: true,
+    file: '\\\\10.10.82.78\\config\\www\\community\\bolder-utility-cards-dev\\bolder-utility-cards.js'
   },
   {
-    dir: './dist',
     format: 'es',
-    inlineDynamicImports: true
+    inlineDynamicImports: true,
+    file: './dist/bolder-utility-cards.js'
   }],
   plugins: [
     nodeResolve(),

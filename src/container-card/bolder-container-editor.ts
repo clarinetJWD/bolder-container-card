@@ -7,9 +7,10 @@ import {
   fireEvent,
   type HASSDomEvent
 } from 'custom-card-helpers'
-import localize from './localize/localize'
+import localize from '../localize/localize'
 import { customElement, property, state, query } from 'lit/decorators.js'
-import type { Template, BolderContainerCardConfig, ConfigChangedEvent, GUIModeChangedEvent } from './types'
+import type { Template, ConfigChangedEvent, GUIModeChangedEvent } from '../types'
+import type { BolderContainerCardConfig } from './bolder-container-types'
 import {
   mdiCodeBraces,
   mdiContentCopy,
@@ -20,7 +21,7 @@ import {
 } from '@mdi/js'
 import deepClone from 'deep-clone-simple'
 import { keyed } from 'lit/directives/keyed.js'
-import './sl-tab-group'
+import '../editor-support/sl-tab-group'
 
 @customElement('bolder-container-card-editor')
 export class BolderContainerCardEditor extends LitElement implements LovelaceCardEditor {
