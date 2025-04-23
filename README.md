@@ -1,15 +1,18 @@
-# Bolder Container Card
+# Bolder Utility Cards
 
-A [Home Assistant Dashboard Card](https://www.home-assistant.io/dashboards/) available through the [Home Assistant Community Store](https://hacs.xyz). This is a replacement for the various "Stack-In-Card" cards that allows the inner cards and this container card to be styled differently.
+A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboards/) available through the [Home Assistant Community Store](https://hacs.xyz). This is a replacement for the various "Stack-In-Card" cards, "Heading" cards, and "Collapsible" cards. that allows the inner cards and this container card to be styled differently.
 
-![Bolder Container Card](./doc/bolder_container_overview.png)
+> NOTE: This is pre-release, and currently, only Container Card is stable/available.
 
-## Features
-
-* Verical and Horizontal Stack configuration.
-* Allow the inner cards to retain their normal appearance while the container uses different variables. For example, you can have a stack of cards without rounded corners, but the entire group has rounded corners.
-* Specify the gap between inner cards to let the background show through.
-* "Inner Container" mode that disables all visual styling and simply acts as a stack.
+## Table of Contents
+1. [The Bolder Card Collection](#the-bolder-collection)
+2. [Installation](#installation)
+3. [Bolder Container Card](#bolder-container-card)
+   1. [Features](#features-container-card)
+   2. [Configuration](#configuration-container-card)
+      1. [Options](#options-container-card)
+      2. [Theme Variables](#theme-variables-container-card)
+4. [Footnotes](#footnotes)
 
 ## The Bolder Collection
 
@@ -21,7 +24,7 @@ Check out the other "Bolder" cards:
 
 ### Manual Installation
 
-1. Download the [bolder-utility-cards](https://www.github.com/clarinetJWD/bolder-container-card/releases/latest/download/bolder-utilility-cards.js).
+1. Download the [bolder-utility-cards](https://www.github.com/clarinetJWD/bolder-utility-cards/releases/latest/download/bolder-utilility-cards.js).
 2. Place the file in your Home Assistant's `config/www` folder.
 3. Add the configuration to your `ui-lovelace.yaml`.
 
@@ -36,7 +39,7 @@ Check out the other "Bolder" cards:
 ### Installation and tracking with `hacs`
 
 1. Make sure the [HACS](https://github.com/custom-components/hacs) component is installed and working.
-2. Add this repository as a custom repository `https://www.github.com/clarinetJWD/bolder-container-card/`
+2. Add this repository as a custom repository `https://www.github.com/clarinetJWD/bolder-utility-cards/`
 3. Search for `bolder-utility-cards` in HACS and install it.
 4. **You're Probably Done!** - In newer versions of Home Assistant, you should simply be able to refresh the dashboard to see the new card now. If not, continue:
 5. Depening on whether you manage your Lovelace resources via YAML (3i) or UI (3ii), you have to add the corresponding resources.
@@ -59,11 +62,22 @@ Check out the other "Bolder" cards:
 6. Restart Home Assistant.
 7. Add [configuration](#configuration) for the card in your `ui-lovelace.yaml` or via the UI.
 
-## Configuration
+## Bolder Container Card
+
+![Bolder Container Card](./doc/bolder_container_overview.png)
+
+### Features (Container Card)
+
+* Verical and Horizontal Stack configuration.
+* Allow the inner cards to retain their normal appearance while the container uses different variables. For example, you can have a stack of cards without rounded corners, but the entire group has rounded corners.
+* Specify the gap between inner cards to let the background show through.
+* "Inner Container" mode that disables all visual styling and simply acts as a stack.
+
+### Configuration (Container Card)
 
 _Note that while I would like to get full UI configuration done for this card, I currently am just using the stack card editor, which doesn't have any of the options specific to this card in the UI. Please use YAML configuration for these elements._
 
-### Minimal configuration
+#### Minimal configuration (Container Card)
 
 ```yaml
 type: custom:bolder-container-card
@@ -72,7 +86,7 @@ cards:
     ...
 ```
 
-### Full configuration
+#### Full configuration (Container Card)
 
 ```yaml
 type: custom:bolder-container-card
@@ -99,7 +113,7 @@ cards:
     ...
 ```
 
-### Options
+#### Options (Container Card)
 
 | Name                     | Type                  | Requirement  | Description                                                                                                                                                                                                                | Default     |
 | ------------------------ | --------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------- |
@@ -116,11 +130,11 @@ cards:
 | is_inner_container       | boolean               | **Optional** | When `true`, visual aspects of the container card are removed, including: Shadow, Rounded Corners, Background, Border, Padding, and Blur/Filter. This is useful for using within other cards or collapsible card trays.    | `false`     |
 | styles                   | StyleItem[]           | **Optional** | Allows setting theme style variables on a per-card basis without editing the theme.                                                                                                                                        | `[]`        |
 
-### Theme Variables
+#### Theme Variables (Container Card)
 
 Almost every aspect of this card can be modified using theme variables (and without card-mod). These can be applied in two ways, see below.
 
-#### Modifying your theme's YAML file
+##### Modifying your theme's YAML file
 
 Just add a line to your theme's yaml file with the variable name and value to override the default:
 
@@ -128,7 +142,7 @@ Just add a line to your theme's yaml file with the variable name and value to ov
 bolder-weather-card-background: red # makes the card red when use_day_night_colors is off.
 ```
 
-#### Using card configuration
+##### Using card configuration
 
 You can add styles to an individual card using it's `styles:` option. All theme variables are supported this way, and the configuration format should be:
 
@@ -147,7 +161,7 @@ Note that you do not need the `bolder-container-card` prefix when specifying var
 For example, if you enter `variable: background`, the CSS variable created will be `--bolder-container-card-background_internal`.
 The `_internal` flag is used internally only, and should never be specified.
 
-#### All Available Variables
+##### All Available Variables
 
 | Variable Name | Description | Fallback 1  | Fallback 2 | Default |
 | ------------- | ----------- | ----------- | -----------| ------- |
