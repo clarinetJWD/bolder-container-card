@@ -13,13 +13,14 @@ export function GetCss (myVar: boolean): string {
 
       /*** Title Text */
       --bolder-container-card-title-color_internal: var(--bolder-container-card-title-color, var(--bolder-container-card-text-color, var(--ha-heading-card-title-color,var(--primary-text-color))));
-      --bolder-container-card-title-background_internal: var(--bolder-container-card-title-background, var(--ha-card-background));
+      --bolder-container-card-title-background_internal: var(--bolder-container-card-title-background, var(--ha-card-background, var(--card-background-color)));
       --bolder-container-card-title-outline-color_internal: var(--bolder-container-card-title-outline-color, var(--bolder-container-card-text-outline-color, transparent));
       --bolder-container-card-title-size_internal: var(--bolder-container-card-title-size, var(--ha-heading-card-title-font-size, var(--headline-font-size, 16px)));
       --bolder-container-card-title-weight_internal: var(--bolder-container-card-title-weight, var(--ha-heading-card-title-font-weight, 400));
       --bolder-container-card-title-line-height_internal: var(--bolder-container-card-title-line-height, 48px);
       --bolder-container-card-title-padding_internal: var(--bolder-container-card-title-padding, 12px 16px 16px);
       --bolder-container-card-title-gap_internal: var(--bolder-container-card-title-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
+      --bolder-container-card-title-backdrop-filter_internal: var(--bolder-container-card-title-backdrop-filter, var(--ha-card-backdrop-filter, none));
 
       /*** Layout */
       ${myVar ? '--vertical-stack-card-gap: var(--bolder-container-card-gap);' : ''}
@@ -60,6 +61,7 @@ export function GetCss (myVar: boolean): string {
       padding: var(--bolder-container-card-title-padding_internal);
       font-weight: var(--bolder-container-card-title-weight_internal);
       margin-bottom: var(--bolder-container-card-title-gap_internal);
+      backdrop-filter: var(--bolder-container-card-title-backdrop-filter_internal);
     }
 
   `

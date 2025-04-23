@@ -262,6 +262,11 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
 
   private getStyleOverrideFromConfig (styles: StyleItem[]): CSSResult {
     const styleLines: string[] = styles.map((s) => s.variable.startsWith('bolder-container-card-') ? `--${s.variable}_internal: ${s.value} !important;` : `--bolder-container-card-${s.variable}_internal: ${s.value} !important;`)
+    if (!(this._config?.keep_background ?? true)) {
+      styleLines.push('--bolder-container-card-title-backdrop-filter_internal: none !important;')
+      styleLines.push('--bolder-container-card-title-background_internal: none !important;')
+    }
+
     return css`
 :host { 
   ${unsafeCSS(styleLines.join('\n'))} 
