@@ -53,7 +53,7 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
   }
 
   public static async getConfigElement (): Promise<LovelaceCardEditor> {
-    await import('./editor')
+    await import('./bolder-container-editor')
     return document.createElement('bolder-container-card-editor')
   }
 

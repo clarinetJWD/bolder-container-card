@@ -1,6 +1,6 @@
 import { type LovelaceCard, type LovelaceCardConfig/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
 import type { TemplateResult, nothing } from 'lit'
-import type { BolderContainerCardEditor } from './editor'
+import type { BolderContainerCardEditor } from './bolder-container-editor'
 
 export type TemplateNothing = typeof nothing
 export type Template = TemplateResult | TemplateNothing
