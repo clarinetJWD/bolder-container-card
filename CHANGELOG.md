@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.5](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.4...v1.1.5) (2025-04-23)
+
+
+### Bug Fixes
+
+* Fixed an issue where the header did not apply the backdrop filter (blur). ([203776e](https://github.com/clarinetJWD/bolder-container-card/commit/203776e7bd6d62d35fb2a08cf7c19fdef9b1c528))
+* Fixed an issue where the header would keep it's background when option "Keep Background" was off. ([203776e](https://github.com/clarinetJWD/bolder-container-card/commit/203776e7bd6d62d35fb2a08cf7c19fdef9b1c528))
+* Fixed an issue with the header background color not defaulting to the theme color when the theme uses "--card-background-color" instead of "--ha-card-color". ([203776e](https://github.com/clarinetJWD/bolder-container-card/commit/203776e7bd6d62d35fb2a08cf7c19fdef9b1c528))
+
 ## [1.1.4](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.3...v1.1.4) (2025-04-22)
 
 

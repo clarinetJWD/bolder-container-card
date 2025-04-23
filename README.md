@@ -173,6 +173,7 @@ The `_internal` flag is used internally only, and should never be specified.
 | bolder-container-card-title-padding | The padding around the heading text. ||| 12px 16px 16px |
 | bolder-container-card-title-background | The background color of the heading area. ||| --ha-card-background |
 | bolder-container-card-title-gap | The gap between the heading area and the first inner card. | --vertical-stack-card-gap | --stack-card-gap | 8px |
+| bolder-container-card-title-backdrop-filter | The filter/blue setting for the heading area. | --ha-card-backdrop-filter || none |
 ||||||
 | **Layout** | Variables that affect the card layout. ||||
 ||||||
