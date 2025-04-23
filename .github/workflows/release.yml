@@ -22,7 +22,7 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
 
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           file: /home/runner/work/bolder-container-card/bolder-container-card/dist/bolder-container-card.js
           asset_name: bolder-container-card.js
           tag: ${{ github.ref }}
