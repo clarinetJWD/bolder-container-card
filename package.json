@@ -11,7 +11,7 @@
     "custom-cards"
   ],
   "module": "bolder-utility-cards.js",
-  "repository": "git@github.com:clarinetJWD/bolder-container-card.git",
+  "repository": "git@github.com:clarinetJWD/bolder-utility-cards.git",
   "author": "Joe Dombrowski",
   "license": "MIT",
   "type": "module",
