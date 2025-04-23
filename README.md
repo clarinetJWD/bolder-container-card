@@ -2,6 +2,10 @@
 
 A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboards/) available through the [Home Assistant Community Store](https://hacs.xyz). This is a replacement for the various "Stack-In-Card" cards, "Heading" cards, and "Collapsible" cards. that allows the inner cards and this container card to be styled differently.
 
+| Bolder Container Card   | Bolder Header Card      | Bolder Collapsible Card |
+| ----------------------- | ----------------------- | ----------------------- |
+| <img src="./doc/bolder_container_overview.png" height="200"> | Not Completed | Not Completed |
+
 > NOTE: This is pre-release, and currently, only Container Card is stable/available.
 
 ## Table of Contents
@@ -22,7 +26,8 @@ Check out the other "Bolder" cards:
 | --------------------------- | --------------------- | ------------ |
 | <img src="https://github.com/user-attachments/assets/030d0f77-f940-4818-bb01-969a96b34571" height="100"> | [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/) | A beautiful weather card designed for wall-mounted tablets, viewed at a distance. |
 
-## Installation
+<details>
+   <summary><h2>Installation</h2></summary>
 
 ### Manual Installation
 
@@ -64,7 +69,10 @@ Check out the other "Bolder" cards:
 6. Restart Home Assistant.
 7. Add [configuration](#configuration) for the card in your `ui-lovelace.yaml` or via the UI.
 
-## Bolder Container Card
+</details>
+
+<details>
+   <summary><h2>Bolder Container Card</h2></summary>
 
 ![Bolder Container Card](./doc/bolder_container_overview.png)
 
@@ -194,6 +202,8 @@ The `_internal` flag is used internally only, and should never be specified.
 | **Layout** | Variables that affect the card layout. ||||
 ||||||
 | bolder-container-card-gap | The gap between inner cards. | --vertical-stack-card-gap | --stack-card-gap | 8px |
+
+</details>
 
 ## Footnotes
 
