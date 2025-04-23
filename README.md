@@ -18,7 +18,9 @@ A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboar
 
 Check out the other "Bolder" cards:
 
-* [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/): A beautiful weather card designed for wall-mounted tablets, viewed at a distance.
+| Preview                     | Card                  | Description  |
+| --------------------------- | --------------------- | ------------ |
+| <img src="https://github.com/user-attachments/assets/030d0f77-f940-4818-bb01-969a96b34571" height="100"> | [Bolder Weather Card](https://www.github.com/clarinetJWD/bolder-weather-card/) | A beautiful weather card designed for wall-mounted tablets, viewed at a distance. |
 
 ## Installation
 
