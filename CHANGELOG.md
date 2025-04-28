@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.2.0...v1.3.0) (2025-04-28)
+
+
+### Features
+
+* Container Card now uses the Header Card for its header, allowing for more header customization. ([7aec912](https://github.com/clarinetJWD/bolder-utility-cards/commit/7aec912183a60dc7d83a7ea792cdf103057d95ff))
+
 ## [1.2.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.1.5...v1.2.0) (2025-04-28)
 
 
