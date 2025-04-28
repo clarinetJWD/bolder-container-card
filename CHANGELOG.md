@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.1.5...v1.2.0) (2025-04-28)
+
+
+### Features
+
+* Adds new card to the set: Bolder Header Card (WIP, more features coming) ([c8fad0a](https://github.com/clarinetJWD/bolder-utility-cards/commit/c8fad0aed736bbf274e1032d509528ff41111876))
+
 ## [1.1.5](https://github.com/clarinetJWD/bolder-container-card/compare/v1.1.4...v1.1.5) (2025-04-23)
 
 
