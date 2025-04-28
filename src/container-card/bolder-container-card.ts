@@ -4,6 +4,7 @@ import { customElement, property } from 'lit-element'
 import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard, type LovelaceCardEditor } from 'custom-card-helpers'
 import type { BolderContainerCardConfig, MergedBolderContainerCardConfig } from './bolder-container-types'
 import type { StyleItem } from '../types'
+import { BolderHeaderCard } from '../header-card/bolder-header-card'
 import { GetCss } from './bolder-container-styles'
 import localize from '../localize/localize'
 import * as pjson from '../../package.json'
@@ -30,6 +31,7 @@ const HELPERS = (window as any).loadCardHelpers ? (window as any).loadCardHelper
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class BolderContainerCard extends LitElement implements LovelaceCard {
   @property({ attribute: false }) protected _card?: LovelaceCard
+  @property({ attribute: false }) protected _header?: BolderHeaderCard
   @property({ attribute: false }) private _config?: MergedBolderContainerCardConfig
 
   private static _hass?: HomeAssistant
@@ -41,6 +43,9 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     BolderContainerCard._hass = hass
     if (this._card) {
       this._card.hass = hass
+    }
+    if (this._header) {
+      this._header.hass = hass
     }
   }
 
@@ -72,7 +77,7 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     this._config = {
       ...config,
       mode: config.mode ?? 'vertical',
-      title: config.title ?? '',
+      header: config.header ?? undefined,
       keep_background: config.keep_background ?? true,
       keep_margin: config.keep_margin ?? false,
       keep_box_shadow: config.keep_box_shadow ?? false,
@@ -84,6 +89,8 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       styles: config.styles ?? []
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this._createHeader()
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this._createStack()
   }
@@ -118,6 +125,14 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
     this._card = await this._cardPromise
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  private async _createHeader () {
+    if (this._config?.header) {
+      this._header = new BolderHeaderCard()
+      this._header.setPartialConfig(this._config?.header)
+    }
+  }
+
   protected render (): TemplateResult {
     if (!BolderContainerCard._hass || !this._config) {
       return html``
@@ -128,7 +143,7 @@ class BolderContainerCard extends LitElement implements LovelaceCard {
       ${this._config.is_inner_container ? 'inner-container ' : ''}
       ${this._config.keep_outer_padding ? 'outer-padding ' : ''}
       ">
-      ${this._config.title ? html`<h1 class="card-header">${this._config.title}</h1>` : html``}
+      ${this._config.header ? html`${this._header}` : html``}
         <div>${this._card}</div>
         <style>${this._config.styles ? css`${this.getStyleOverrideFromConfig(this._config.styles)}` : css``}</style>
       </ha-card>
