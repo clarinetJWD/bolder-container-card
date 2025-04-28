@@ -6,7 +6,7 @@ import terser from '@rollup/plugin-terser'
 import json from '@rollup/plugin-json'
 
 export default {
-  input: ['src/container-card/bolder-container-card.ts'],
+  input: 'src/cards.ts',
   output: [{
     format: 'es',
     inlineDynamicImports: true,

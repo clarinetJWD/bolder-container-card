@@ -2,7 +2,8 @@ import { LitElement, type TemplateResult, html, type PropertyValues, css, type C
 import { customElement, property } from 'lit-element'
 /* import { ifDefined } from 'lit-html/directives/if-defined' */
 import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard, type LovelaceCardEditor } from 'custom-card-helpers'
-import type { StyleItem, BolderContainerCardConfig, MergedBolderContainerCardConfig } from './bolder-container-types'
+import type { BolderContainerCardConfig, MergedBolderContainerCardConfig } from './bolder-container-types'
+import type { StyleItem } from '../types'
 import { GetCss } from './bolder-container-styles'
 import localize from '../localize/localize'
 import * as pjson from '../../package.json'

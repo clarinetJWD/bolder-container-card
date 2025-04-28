@@ -8,7 +8,7 @@ import gzipPlugin from 'rollup-plugin-gzip'
 
 export default [
   {
-    input: 'src/container-card/bolder-container-card.ts',
+    input: 'src/cards.ts',
     output: {
       format: 'es',
       inlineDynamicImports: true,

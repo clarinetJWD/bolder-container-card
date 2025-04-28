@@ -1,4 +1,5 @@
 import { type LovelaceCardConfig/*, type LovelaceCardEditor */ } from 'custom-card-helpers'
+import type { StyleItem } from '../types'
 
 export interface BolderContainerCardConfig extends LovelaceCardConfig {
   mode?: 'horizontal' | 'vertical'
@@ -26,9 +27,4 @@ export interface MergedBolderContainerCardConfig extends LovelaceCardConfig {
   card_background_override?: string
   is_inner_container: boolean
   styles?: StyleItem[]
-}
-
-export interface StyleItem {
-  variable: string
-  value: string
 }

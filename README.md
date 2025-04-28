@@ -4,9 +4,10 @@ A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboar
 
 | Bolder Container Card   | Bolder Header Card      | Bolder Collapsible Card |
 | ----------------------- | ----------------------- | ----------------------- |
-| <img src="./doc/bolder_container_overview.png" height="200"> | Not Completed | Not Completed |
+| <img src="./doc/bolder_container_overview.png" width="300"> | <img src="./doc/bolder_header_overview.png" width="300"> | Coming Soon |
+| Ready to use | Pre-release | Not Completed |
 
-> NOTE: This is pre-release, and currently, only Container Card is stable/available.
+> NOTE: This is pre-release, and currently, only Container Card is stable, with the Header card in early development.
 
 ## Table of Contents
 
@@ -17,7 +18,12 @@ A set of [Home Assistant Dashboard Cards](https://www.home-assistant.io/dashboar
    2. [Configuration](#configuration-container-card)
       1. [Options](#options-container-card)
       2. [Theme Variables](#theme-variables-container-card)
-4. [Footnotes](#footnotes)
+4. [Bolder Header Card](#bolder-header-card)
+   1. [Features](#features-header-card)
+   2. [Configuration](#configuration-header-card)
+      1. [Options](#options-header-card)
+      2. [Theme Variables](#theme-variables-header-card)
+5. [Footnotes](#footnotes)
 
 ## The Bolder Collection
 
@@ -79,10 +85,10 @@ Check out the other "Bolder" cards:
 * Allow the inner cards to retain their normal appearance while the container uses different variables. For example, you can have a stack of cards without rounded corners, but the entire group has rounded corners.
 * Specify the gap between inner cards to let the background show through.
 * "Inner Container" mode that disables all visual styling and simply acts as a stack.
+* Full UI configuration (aside from styles).
+* Customize appearance using variables in your theme file, or in the card config.
 
 ### Configuration (Container Card)
-
-_Note that while I would like to get full UI configuration done for this card, I currently am just using the stack card editor, which doesn't have any of the options specific to this card in the UI. Please use YAML configuration for these elements._
 
 #### Minimal configuration (Container Card)
 
@@ -141,12 +147,12 @@ cards:
 
 Almost every aspect of this card can be modified using theme variables (and without card-mod). These can be applied in two ways, see below.
 
-##### Modifying your theme's YAML file
+##### Modifying your theme's YAML file (Container Card)
 
 Just add a line to your theme's yaml file with the variable name and value to override the default:
 
 ```yaml
-bolder-weather-card-background: red # makes the card red when use_day_night_colors is off.
+bolder-container-card-title-color: red # makes the card header text red.
 ```
 
 ##### Using card configuration
@@ -161,6 +167,8 @@ styles:
     value: 32pt
   - variable: background
     value: '#0000ff'
+  - variable: border-width
+    value: var(--ha-card-border-width)
 ```
 
 Note that you do not need the `bolder-container-card` prefix when specifying variables this way (though it will work if you add it). If the prefix isn't found, it will add it automatically.
@@ -199,6 +207,154 @@ The `_internal` flag is used internally only, and should never be specified.
 | **Layout** | Variables that affect the card layout. ||||
 ||||||
 | bolder-container-card-gap | The gap between inner cards. | --vertical-stack-card-gap | --stack-card-gap | 8px |
+
+## Bolder Header Card
+
+> NOTE: Header card is still in early development. All of the listed features are planned, but implementation, variable names, etc. may change during development.
+
+![Bolder Header Card](./doc/bolder_header_overview.png)
+
+### Features (Header Card)
+
+* Customizable Title and Sub-Title text.
+* Icon with customizable size and color.
+* Full UI configuration (aside from custom styles).
+* (Future Release) Custom buttons grouped on the right side with highly customizable appearance.
+* Ability to use custom styles by specifying variables in either your theme file, or on the card config itself.
+
+### Configuration (Header Card)
+
+#### Minimal configuration (Header Card)
+
+```yaml
+type: custom:bolder-header-card
+title: Hello World
+```
+
+#### Full configuration (Header Card)
+
+```yaml
+type: custom:bolder-container-card
+mode: vertical
+title: My Card Title
+subtitle: My Card Subtitle
+icon: mdi:home
+styles:
+  - variable: title-color
+    value: red
+  - variable: title-size
+    value: 32pt
+  - variable: card-background
+    value: '#0000ff'
+  - variable: border-width
+    value: var(--ha-card-border-width)
+  ...
+```
+
+#### Options (Header Card)
+
+| Name      | Type         | Requirement  | Description                                                                          | Default                      |
+| --------- | ------------ | ------------ | ------------------------------------------------------------------------------------ | ---------------------------- |
+| type      | string       | **Required** | `custom:bolder-header-card`                                                          | `custom:bolder-header-card`  |
+| title     | string       | **Optional** | Main title of the card.                                                              | `''`                         |
+| subtitle  | string       | **Optional** | Subtitle, smaller below the main text.                                               | `''`                         |
+| icon      | string       | **Optional** | Sets the icon to the left of the title text.                                         | `''`                         |
+| styles    | StyleItem[]  | **Optional** | Allows setting theme style variables on a per-card basis without editing the theme.  | `[]`                         |
+
+#### Theme Variables (Header Card)
+
+Almost every aspect of this card can be modified using theme variables (and without card-mod). These can be applied in two ways, see below.
+
+##### Modifying your theme's YAML file (Header Card)
+
+Just add a line to your theme's yaml file with the variable name and value to override the default:
+
+```yaml
+bolder-header-card-title-color: red # makes the title text red.
+```
+
+##### Using card configuration (Header Card)
+
+You can add styles to an individual card using it's `styles:` option. All theme variables are supported this way, and the configuration format should be:
+
+```yaml
+styles:
+  - variable: title-color
+    value: red
+  - variable: title-size
+    value: 32pt
+  - variable: card-background
+    value: '#0000ff'
+  - variable: border-width
+    value: var(--ha-card-border-width)
+```
+
+Note that you do not need the `bolder-header-card` prefix when specifying variables this way (though it will work if you add it). If the prefix isn't found, it will add it automatically.
+
+For example, if you enter `variable: title-color`, the CSS variable created will be `--bolder-header-card-title-color_internal`.
+The `_internal` flag is used internally only, and should never be specified.
+
+##### All Available Variables (Header Card)
+
+| Variable Name | Description | Fallback 1  | Fallback 2 | Default |
+| ------------- | ----------- | ----------- | -----------| ------- |
+||||||
+| **Card Variables** | Variables that affect the header card. ||||
+||||||
+| bolder-header-card-background       |  | --ha-card-background || --card-background-color |
+| bolder-header-card-border-color     |  | --ha-card-border-color | --divider-color | #e0e0e0 |
+| bolder-header-card-border-style     |  | --ha-card-border-style || solid |
+| bolder-header-card-border-width     |  | --ha-card-border-width || 0px |
+| bolder-header-card-border-radius    |  | --ha-card-border-radius || 0px |
+| bolder-header-card-box-shadow       |  ||| --ha-card-box-shadow |
+| bolder-header-card-backdrop-filter  |  | --ha-card-backdrop-filter || none |
+| bolder-header-card-gap              |  ||| 0px |
+| bolder-header-card-padding          |  ||| 12px 16px 16px |
+||||||
+| **Header** |  ||||
+||||||
+| bolder-header-card-header-padding  |  ||| 0 0 0 0 |
+| bolder-header-card-header-margin   |  ||| 0 0 0 0 |
+| bolder-header-card-header-gap      |  ||| 0 |
+||||||
+| **Title Text** |  ||||
+||||||
+| bolder-header-card-title-color          |  | --bolder-header-card-text-color | --ha-heading-card-title-color | --primary-text-color |
+| bolder-header-card-title-outline-color  |  | --bolder-header-card-text-outline-color || transparent |
+| bolder-header-card-title-size           |  | --ha-heading-card-title-font-size | --headline-font-size | 16px |
+| bolder-header-card-title-weight         |  | --ha-heading-card-title-font-weight || 400 |
+| bolder-header-card-title-line-height    |  ||| normal |
+| bolder-header-card-title-padding        |  ||| 0 0 0 0 |
+| bolder-header-card-title-margin         |  ||| 0 0 0 0 |
+||||||
+| **Subtitle Text** |  ||||
+||||||
+| bolder-header-card-subtitle-color          |  | --bolder-header-card-text-color | --ha-heading-card-subtitle-color | --secondary-text-color |
+| bolder-header-card-subtitle-outline-color  |  | --bolder-header-card-text-outline-color || transparent |
+| bolder-header-card-subtitle-size           |  | --ha-heading-card-subtitle-font-size | --mdc-typography-subtitle1-font-size | 1rem |
+| bolder-header-card-subtitle-weight         |  | --ha-heading-card-subtitle-font-weight || inherit |
+| bolder-header-card-subtitle-line-height    |  ||| normal |
+| bolder-header-card-subtitle-padding        |  ||| 0 0 0 0 |
+| bolder-header-card-subtitle-margin         |  ||| 0 0 0 0 |
+||||||
+| **Icon** |  ||||
+||||||
+| bolder-header-card-icon-size                |  ||| calc(var(--bolder-header-card-title-size_internal) * 1.5) |
+| bolder-header-card-icon-gap                 |  ||| 10px |
+| bolder-header-card-icon-vertical-alignment  |  ||| center |
+| bolder-header-card-icon-color               |  ||| --primary-text-color |
+| bolder-header-card-icon-background          |  ||| none |
+| bolder-header-card-icon-padding             |  ||| 0 0 0 0 |
+| bolder-header-card-icon-margin              |  ||| 0 0 0 0 |
+| bolder-header-card-icon-opacity             |  ||| 1.0 |
+| bolder-header-card-icon-border-radius       |  ||| 10px |
+||||||
+| bolder-header-card-icon-hover-color          |  | --bolder-header-card-icon-color || --primary-text-color |
+| bolder-header-card-icon-hover-background     |  | --bolder-header-card-icon-background || none |
+| bolder-header-card-icon-hover-padding        |  | --bolder-header-card-icon-padding || 0 0 0 0 |
+| bolder-header-card-icon-hover-margin         |  | --bolder-header-card-icon-margin || 0 0 0 0 |
+| bolder-header-card-icon-hover-opacity        |  | --bolder-header-card-icon-opacity || 1.0 |
+| bolder-header-card-icon-hover-border-radius  |  ||| 10px |
 
 ## Footnotes
 
