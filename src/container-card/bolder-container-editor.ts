@@ -70,7 +70,6 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
             expanded: false,
             locale: this.getLocale(),
             schema: [
-              { name: 'title', locale: this.getLocale(), selector: { text: {} } },
               {
                 name: 'mode',
                 locale: this.getLocale(),
@@ -85,6 +84,18 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
                 }
               },
               { name: 'is_inner_container', locale: this.getLocale(), selector: { boolean: {} } },
+              {
+                name: 'header',
+                type: 'expandable' as const,
+                flatten: false,
+                expanded: false,
+                locale: this.getLocale(),
+                schema: [
+                  { name: 'title', locale: this.getLocale(), selector: { text: {} } },
+                  { name: 'subtitle', locale: this.getLocale(), selector: { text: {} } },
+                  { name: 'icon', locale: this.getLocale(), selector: { icon: {} } }
+                ]
+              },
               {
                 title: this.localize('keep_settings', this.getLocale()),
                 type: 'expandable' as const,
@@ -335,7 +346,6 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
     }
     const _config = Object.assign({}, this.config)
     _config.mode = event.detail.value.mode
-    _config.title = event.detail.value.title
     _config.keep_background = event.detail.value.keep_background
     _config.keep_border_radius = event.detail.value.keep_border_radius
     _config.keep_box_shadow = event.detail.value.keep_box_shadow
@@ -345,6 +355,11 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
     _config.is_inner_container = event.detail.value.is_inner_container
     _config.cards = event.detail.value.cards
     _config.styles = event.detail.value.styles
+    _config.header = {
+      title: event.detail.value.header.title,
+      subtitle: event.detail.value.header.subtitle,
+      icon: event.detail.value.header.icon
+    }
 
     this.config = _config
 

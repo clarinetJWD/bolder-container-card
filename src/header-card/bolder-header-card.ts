@@ -25,7 +25,7 @@ console.info(
 
 @customElement('bolder-header-card')
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-class BolderHeaderCard extends LitElement implements LovelaceCard {
+export class BolderHeaderCard extends LitElement implements LovelaceCard {
   @property({ attribute: false }) private _config?: MergedBolderHeaderCardConfig
 
   private static _hass?: HomeAssistant
@@ -61,6 +61,15 @@ class BolderHeaderCard extends LitElement implements LovelaceCard {
       subtitle: config.subtitle ?? undefined,
       icon: config.icon ?? undefined,
       styles: config.styles ?? []
+    }
+  }
+
+  public setPartialConfig (config: Partial<BolderHeaderCardConfig>): void {
+    this._config = {
+      type: 'custom:bolder-header-card',
+      title: config.title ?? this._config?.title ?? '',
+      subtitle: config.subtitle ?? this._config?.subtitle,
+      icon: config.icon ?? this._config?.icon
     }
   }
 
