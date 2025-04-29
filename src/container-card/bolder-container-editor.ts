@@ -22,6 +22,7 @@ import {
 import deepClone from 'deep-clone-simple'
 import { keyed } from 'lit/directives/keyed.js'
 import '../editor-support/sl-tab-group'
+import { BolderHeaderCardEditor } from '../header-card/bolder-header-editor'
 
 @customElement('bolder-container-card-editor')
 export class BolderContainerCardEditor extends LitElement implements LovelaceCardEditor {
@@ -42,7 +43,9 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
 
   setConfig (config: LovelaceCardConfig & BolderContainerCardConfig): void {
     this.config = config
-    this.config.keep_background = this.config.keep_background ?? true
+    if (this.config.header && config.header) {
+      this.config.header.styles = config.header.styles
+    }
   }
 
   protected formData (): object {
@@ -57,64 +60,61 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
     const numcards = this.config.cards?.length ?? 0
 
     const isGuiMode = this._GUImode
-
-    return html`
-      <ha-form
-        .hass=${this.hass}
-        .data=${this.config}
-        .schema=${[
+    const schema = [
+      {
+        title: this.localize('container_card_settings', this.getLocale()),
+        type: 'expandable' as const,
+        flatten: false,
+        expanded: false,
+        locale: this.getLocale(),
+        schema: [
           {
-            title: this.localize('container_card_settings', this.getLocale()),
+            name: 'mode',
+            locale: this.getLocale(),
+            selector: {
+              select: {
+                multiple: false,
+                options: [
+                  { label: this.localize('vertical', this.getLocale()), value: 'vertical' },
+                  { label: this.localize('horizontal', this.getLocale()), value: 'horizontal' }
+                ]
+              }
+            }
+          },
+          { name: 'is_inner_container', locale: this.getLocale(), selector: { boolean: {} } },
+          {
+            name: 'header',
+            type: 'expandable' as const,
+            flatten: false,
+            expanded: false,
+            locale: this.getLocale(),
+            schema: BolderHeaderCardEditor._schema(this.getLocale())
+          },
+          {
+            title: this.localize('keep_settings', this.getLocale()),
             type: 'expandable' as const,
             flatten: false,
             expanded: false,
             locale: this.getLocale(),
             schema: [
-              {
-                name: 'mode',
-                locale: this.getLocale(),
-                selector: {
-                  select: {
-                    multiple: false,
-                    options: [
-                      { label: this.localize('vertical', this.getLocale()), value: 'vertical' },
-                      { label: this.localize('horizontal', this.getLocale()), value: 'horizontal' }
-                    ]
-                  }
-                }
-              },
-              { name: 'is_inner_container', locale: this.getLocale(), selector: { boolean: {} } },
-              {
-                name: 'header',
-                type: 'expandable' as const,
-                flatten: false,
-                expanded: false,
-                locale: this.getLocale(),
-                schema: [
-                  { name: 'title', locale: this.getLocale(), selector: { text: {} } },
-                  { name: 'subtitle', locale: this.getLocale(), selector: { text: {} } },
-                  { name: 'icon', locale: this.getLocale(), selector: { icon: {} } }
-                ]
-              },
-              {
-                title: this.localize('keep_settings', this.getLocale()),
-                type: 'expandable' as const,
-                flatten: false,
-                expanded: false,
-                locale: this.getLocale(),
-                schema: [
-                  { name: 'keep_margin', locale: this.getLocale(), selector: { boolean: {} } },
-                  { name: 'keep_background', locale: this.getLocale(), selector: { boolean: {} } },
-                  { name: 'keep_box_shadow', locale: this.getLocale(), selector: { boolean: {} } },
-                  { name: 'keep_border_radius', locale: this.getLocale(), selector: { boolean: {} } },
-                  { name: 'keep_outer_padding', locale: this.getLocale(), selector: { boolean: {} } }
-                ]
-              },
-              { name: 'card_background_override', locale: this.getLocale(), selector: { text: {} } }
+              { name: 'keep_margin', locale: this.getLocale(), selector: { boolean: {} } },
+              { name: 'keep_background', locale: this.getLocale(), selector: { boolean: {} } },
+              { name: 'keep_box_shadow', locale: this.getLocale(), selector: { boolean: {} } },
+              { name: 'keep_border_radius', locale: this.getLocale(), selector: { boolean: {} } },
+              { name: 'keep_outer_padding', locale: this.getLocale(), selector: { boolean: {} } }
             ]
           },
-          { name: 'inner_cards', locale: this.getLocale(), selector: { constant: { value: this.localize('inner_cards', this.getLocale()) } } }
-        ]}
+          { name: 'card_background_override', locale: this.getLocale(), selector: { text: {} } }
+        ]
+      },
+      { name: 'inner_cards', locale: this.getLocale(), selector: { constant: { value: this.localize('inner_cards', this.getLocale()) } } }
+    ] as const
+
+    return html`
+      <ha-form
+        .hass=${this.hass}
+        .data=${this.config}
+        .schema=${schema}
         .computeLabel=${(schema) => this.computeLabel(schema)}
         @value-changed=${(event) => { this.valueChanged(event) }}
       ></ha-form>
@@ -355,11 +355,9 @@ export class BolderContainerCardEditor extends LitElement implements LovelaceCar
     _config.is_inner_container = event.detail.value.is_inner_container
     _config.cards = event.detail.value.cards
     _config.styles = event.detail.value.styles
-    _config.header = {
-      title: event.detail.value.header.title,
-      subtitle: event.detail.value.header.subtitle,
-      icon: event.detail.value.header.icon
-    }
+    const newHeader = Object.assign({}, this.config.header)
+    BolderHeaderCardEditor.getConfigFromValueChangedObject(newHeader, event.detail.value.header)
+    _config.header = newHeader
 
     this.config = _config
 

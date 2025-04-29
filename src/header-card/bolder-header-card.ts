@@ -69,7 +69,8 @@ export class BolderHeaderCard extends LitElement implements LovelaceCard {
       type: 'custom:bolder-header-card',
       title: config.title ?? this._config?.title ?? '',
       subtitle: config.subtitle ?? this._config?.subtitle,
-      icon: config.icon ?? this._config?.icon
+      icon: config.icon ?? this._config?.icon,
+      styles: config.styles ?? this._config?.styles
     }
   }
 

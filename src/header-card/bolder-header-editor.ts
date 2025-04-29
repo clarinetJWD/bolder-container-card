@@ -8,7 +8,13 @@ import localize from '../localize/localize'
 import { customElement, property, state } from 'lit/decorators.js'
 import type { BolderHeaderCardConfig } from './bolder-header-types'
 import type { Template } from '../types'
+import memoizeOne from 'memoize-one'
 // import styles from './editor.css'
+
+function computeLabel (schema): string {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return localize('editor.' + schema.name, schema.locale)
+}
 
 @customElement('bolder-header-card-editor')
 export class BolderHeaderCardEditor extends LitElement implements LovelaceCardEditor {
@@ -16,35 +22,21 @@ export class BolderHeaderCardEditor extends LitElement implements LovelaceCardEd
 
   @state() private config!: Partial<BolderHeaderCardConfig>
 
+  static readonly _schema = memoizeOne(
+    (thisLocale: string) =>
+      [
+        { name: 'title', locale: thisLocale, selector: { text: {} } },
+        { name: 'subtitle', locale: thisLocale, selector: { text: {} } },
+        { name: 'icon', locale: thisLocale, selector: { icon: {} } }
+      ] as const
+  )
+
   setConfig (config: LovelaceCardConfig & BolderHeaderCardConfig): void {
     this.config = config
   }
 
-  private getEntitiesByType (type: string, deviceClass?: string): string[] {
-    if (!this.hass) {
-      return []
-    }
-
-    const entities = Object.keys(this.hass.states).filter((id) =>
-      id.startsWith(type)
-    )
-
-    if (deviceClass) {
-      return entities.filter(
-        (id) => this.hass?.states[id]?.attributes?.device_class === deviceClass
-      )
-    }
-
-    return entities
-  }
-
   protected getLocale (): string {
     return this.config.locale ?? this.hass.locale.language ?? 'en-GB'
-  }
-
-  protected computeLabel (schema): string {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    return localize('editor.' + schema.name, schema.locale)
   }
 
   protected render (): Template {
@@ -52,41 +44,21 @@ export class BolderHeaderCardEditor extends LitElement implements LovelaceCardEd
       return nothing
     }
 
+    const schema = [{
+      name: 'header',
+      type: 'expandable' as const,
+      flatten: true,
+      expanded: true,
+      locale: this.getLocale(),
+      schema: BolderHeaderCardEditor._schema(this.getLocale())
+    }] as const
+
     return html`
       <ha-form
       .hass=${this.hass}
       .data=${this.config}
-      .schema=${[
-        {
-          title: localize('editor.basic_settings', this.getLocale()),
-          type: 'expandable' as const,
-          flatten: true,
-          expanded: true,
-          locale: this.getLocale(),
-          schema: [
-            { name: 'title', locale: this.getLocale(), selector: { text: {} } },
-            { name: 'subtitle', locale: this.getLocale(), selector: { text: {} } },
-            { name: 'icon', locale: this.getLocale(), selector: { icon: {} } }
-            /* {
-              name: 'size',
-              locale: this.getLocale(),
-              selector: {
-                select: {
-                  options: [
-                    { label: 'h1', value: 'h1' },
-                    { label: 'h2', value: 'h2' },
-                    { label: 'h3', value: 'h3' },
-                    { label: 'h4', value: 'h4' },
-                    { label: 'h5', value: 'h5' },
-                    { label: 'h6', value: 'h6' }
-                  ]
-                }
-              }
-            } */
-          ]
-        }
-      ]}
-      .computeLabel=${(schema) => this.computeLabel(schema)}
+      .schema=${schema}
+      .computeLabel=${(schema) => computeLabel(schema)}
       @value-changed=${(event) => { this.valueChanged(event) }}
       ></ha-form>
     `
@@ -96,11 +68,9 @@ export class BolderHeaderCardEditor extends LitElement implements LovelaceCardEd
     if (!this.config || !this.hass) {
       return
     }
+
     const _config = Object.assign({}, this.config)
-    _config.title = event.detail.value.title
-    _config.subtitle = event.detail.value.subtitle
-    _config.icon = event.detail.value.icon
-    _config.styles = event.detail.value.styles
+    BolderHeaderCardEditor.getConfigFromValueChangedObject(_config, event.detail.value)
 
     this.config = _config
 
@@ -110,6 +80,13 @@ export class BolderHeaderCardEditor extends LitElement implements LovelaceCardEd
       composed: true
     })
     this.dispatchEvent(ev)
+  }
+
+  public static getConfigFromValueChangedObject (configToFill: Partial<BolderHeaderCardConfig>, configFromEvent: any): void {
+    configToFill.title = configFromEvent.title
+    configToFill.subtitle = configFromEvent.subtitle
+    configToFill.icon = configFromEvent.icon
+    configToFill.styles = configFromEvent.styles
   }
 
   protected localize (name: string, locale: string): string {

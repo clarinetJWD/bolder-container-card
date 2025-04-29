@@ -12,15 +12,15 @@ export function GetCss (myVar: boolean): string {
       --bolder-container-card-backdrop-filter_internal: var(--bolder-container-card-backdrop-filter, var(--ha-card-backdrop-filter, none));
 
       /*** Title Text */
-      --bolder-container-card-title-color_internal: var(--bolder-container-card-title-color, var(--bolder-container-card-text-color, var(--ha-heading-card-title-color,var(--primary-text-color))));
-      --bolder-container-card-title-background_internal: var(--bolder-container-card-title-background, var(--ha-card-background, var(--card-background-color)));
-      --bolder-container-card-title-outline-color_internal: var(--bolder-container-card-title-outline-color, var(--bolder-container-card-text-outline-color, transparent));
-      --bolder-container-card-title-size_internal: var(--bolder-container-card-title-size, var(--ha-heading-card-title-font-size, var(--headline-font-size, 16px)));
-      --bolder-container-card-title-weight_internal: var(--bolder-container-card-title-weight, var(--ha-heading-card-title-font-weight, 400));
-      --bolder-container-card-title-line-height_internal: var(--bolder-container-card-title-line-height, 48px);
-      --bolder-container-card-title-padding_internal: var(--bolder-container-card-title-padding, 12px 16px 16px);
-      --bolder-container-card-title-gap_internal: var(--bolder-container-card-title-gap, var(--vertical-stack-card-gap, var(--stack-card-gap, 8px)));
-      --bolder-container-card-title-backdrop-filter_internal: var(--bolder-container-card-title-backdrop-filter, var(--ha-card-backdrop-filter, none));
+      --bolder-header-card-background: var(--bolder-container-card-title-background, var(--bolder-container-card-title-background_internal));
+      --bolder-header-card-title-color: var(--bolder-container-card-title-color, var(--bolder-container-card-title-color_internal));
+      --bolder-header-card-gap: var(--bolder-container-card-title-gap, var(--bolder-container-card-title-gap_internal));
+      --bolder-header-card-backdrop-filter_internal: var(--bolder-container-card-title-backdrop-filter, var(--bolder-container-card-title-backdrop-filter_internal));
+      --bolder-header-card-title-outline-color: var(--bolder-container-card-title-outline-color, var(--bolder-container-card-title-outline-color_internal));
+      --bolder-header-card-title-size: var(--bolder-container-card-title-size, var(--bolder-container-card-title-size_internal));
+      --bolder-header-card-title-weight: var(--bolder-container-card-title-weight, var(--bolder-container-card-title-weight_internal));
+      --bolder-header-card-title-line-height: var(--bolder-container-card-title-line-height, var(--bolder-container-card-title-line-height_internal));
+      --bolder-header-card-padding: var(--bolder-container-card-title-padding, var(--bolder-container-card-title-padding_internal));
 
       /*** Layout */
       ${myVar ? '--vertical-stack-card-gap: var(--bolder-container-card-gap);' : ''}

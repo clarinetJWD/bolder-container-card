@@ -36,7 +36,7 @@ export function GetCss (): string {
       --bolder-header-card-subtitle-margin_internal: var(--bolder-header-card-subtitle-margin, 0 0 0 0);
 
       /*** Icon */
-      --bolder-header-card-icon-size_internal: var(--bolder-header-card-icon-size, calc(var(--bolder-header-card-title-size_internal) * 1.5));
+      --bolder-header-card-icon-size_internal: var(--bolder-header-card-icon-size, calc(var(--bolder-header-card-title-size_internal) * 1.0));
       --bolder-header-card-icon-gap_internal: var(--bolder-header-card-icon-gap, 10px);
       --bolder-header-card-icon-vertical-alignment_internal: var(--bolder-header-card-icon-vertical-alignment, center);
       --bolder-header-card-icon-color_internal: var(--bolder-header-card-icon-color, var(--primary-text-color));
