@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.3.0...v1.4.0) (2025-04-29)
+
+
+### Features
+
+* Fully compartmentalized header editor code so that any header updates will be reflected in container card. ([104e7f2](https://github.com/clarinetJWD/bolder-utility-cards/commit/104e7f276c55dee708a0f73f9f457f539caa778a))
+
+
+### Bug Fixes
+
+* Fixed an issue on container card where header text variables were not being applied ([104e7f2](https://github.com/clarinetJWD/bolder-utility-cards/commit/104e7f276c55dee708a0f73f9f457f539caa778a))
+* Fixed an issue where styles were not being applied to header card when setting from other cards. ([104e7f2](https://github.com/clarinetJWD/bolder-utility-cards/commit/104e7f276c55dee708a0f73f9f457f539caa778a))
+* Reduced default size of header icon on header card. ([104e7f2](https://github.com/clarinetJWD/bolder-utility-cards/commit/104e7f276c55dee708a0f73f9f457f539caa778a))
+
 ## [1.3.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.2.0...v1.3.0) (2025-04-28)
 
 
