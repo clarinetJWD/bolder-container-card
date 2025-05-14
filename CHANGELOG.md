@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.4.0...v1.4.1) (2025-05-14)
+
+
+### Bug Fixes
+
+* Fixed Container Card editor support in Home Assistant 2025.2 ([be34bf8](https://github.com/clarinetJWD/bolder-utility-cards/commit/be34bf8fac427007a13726b95924f84c85d02be1))
+
 ## [1.4.0](https://github.com/clarinetJWD/bolder-utility-cards/compare/v1.3.0...v1.4.0) (2025-04-29)
 
 
