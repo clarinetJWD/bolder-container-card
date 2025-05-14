@@ -1,4 +1,4 @@
-import { LitElement, type TemplateResult, html, type PropertyValues, css, type CSSResultGroup, unsafeCSS, type CSSResult } from 'lit'
+import { LitElement, type TemplateResult, html, type PropertyValues, css, type CSSResultGroup, unsafeCSS, type CSSResult, HTMLTemplateResult } from 'lit'
 import { customElement, property } from 'lit-element'
 /* import { ifDefined } from 'lit-html/directives/if-defined' */
 import { type HomeAssistant, type LovelaceCardConfig, createThing, type LovelaceCard, type LovelaceCardEditor } from 'custom-card-helpers'
@@ -23,9 +23,45 @@ console.info(
   name: 'Bolder Container Card',
   description: 'A container card like Stack In Card that allows for more customization and theming.'
 })
+/* (window as any).customCards.push({
+  type: 'extended-tile-card',
+  name: 'Extended Tile Card',
+  description: 'A container card like Stack In Card that allows for more customization and theming.'
+}) */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const HELPERS = (window as any).loadCardHelpers ? (window as any).loadCardHelpers() : undefined
+
+/* const HuiTileCard = customElements.get('hui-tile-card') as typeof LitElement
+@customElement('extended-tile-card')
+export class ExtendedTileCard extends HuiTileCard {
+  public static getStubConfig (
+    hass: HomeAssistant,
+    entities: string[],
+    entitiesFallback: string[]
+  ): TileCardConfig {
+    let newConfig = (HuiTileCard.prototype as unknown).getStubConfig(hass, entities, entitiesFallback)
+    newConfig.type = 'custom:extended-tile-card'
+    const includeDomains = ["sensor", "light", "switch"];
+    const maxEntities = 1;
+    const foundEntities = findEntities(
+      hass,
+      maxEntities,
+      entities,
+      entitiesFallback,
+      includeDomains
+    );
+
+    return {
+      type: "tile",
+      entity: foundEntities[0] || "",
+    };
+  }
+  protected render (): any {
+    const returnValue: HTMLTemplateResult = super.render() as HTMLTemplateResult
+    return html`${returnValue}<style>:host { background: poop; }</style>`
+  }
+} */
 
 @customElement('bolder-container-card')
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
